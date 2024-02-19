@@ -97,6 +97,7 @@ import org.wso2.carbon.apimgt.persistence.mapper.DocumentMapper;
 import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.databridge.commons.Event;
+import org.wso2.carbon.governance.custom.lifecycles.checklist.util.CheckListItem;
 import org.wso2.carbon.identity.application.common.model.IdentityProvider;
 import org.wso2.carbon.user.api.UserStoreException;
 import org.wso2.carbon.user.api.UserStoreManager;
@@ -7102,6 +7103,32 @@ class APIProviderImpl extends AbstractAPIManager implements APIProvider {
     public int getPolicyUsageByPolicyUUIDInGatewayPolicies(String commonPolicyUUID)
             throws APIManagementException {
         return apiMgtDAO.getPolicyUUIDCount(commonPolicyUUID);
+    }
+
+    @Override
+    public NotificationList getNotifications(String username, String organization, String sortOrder, Integer limit,
+            Integer offset) throws APIManagementException {
+        return portalNotificationDAO.getNotifications(username, organization, sortOrder, limit, offset);
+    }
+
+    @Override
+    public boolean deleteAllNotifications(String username, String organization) {
+        return portalNotificationDAO.deleteAllNotifications(username, organization);
+    }
+
+    @Override
+    public Notification markNotificationAsReadById(String username, String organization, String notificationId) {
+        return portalNotificationDAO.markNotificationAsReadById(username, organization, notificationId);
+    }
+
+    @Override
+    public boolean deleteNotificationById(String username, String organization, String notificationId) {
+        return portalNotificationDAO.deleteNotificationById(username, organization, notificationId);
+    }
+
+    @Override
+    public NotificationList markAllNotificationsAsRead(String username, String organization) {
+        return portalNotificationDAO.markAllNotificationsAsRead(username, organization);
     }
 
     /**
