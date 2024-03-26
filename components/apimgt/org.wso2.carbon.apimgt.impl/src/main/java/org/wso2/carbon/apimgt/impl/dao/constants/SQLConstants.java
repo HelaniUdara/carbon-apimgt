@@ -3191,7 +3191,9 @@ public class SQLConstants {
                         "  e.DESTINATION_USER = ?" +
                         "  AND e.ORGANIZATION = ?" +
                         "  AND e.PORTAL_TO_DISPLAY = ? " +
-                "ORDER BY  n.CREATED_TIME DESC";
+                "ORDER BY  n.CREATED_TIME DESC " +
+                "LIMIT ? , ?"
+                ;
 
         public static final String GET_NOTIFICATIONS_ASC =
                 "SELECT" +
@@ -3206,7 +3208,9 @@ public class SQLConstants {
                         "  e.DESTINATION_USER = ?" +
                         "  AND e.ORGANIZATION = ?" +
                         "  AND e.PORTAL_TO_DISPLAY = ? " +
-                        "ORDER BY  n.CREATED_TIME ASC";
+                        "ORDER BY  n.CREATED_TIME ASC " +
+                        "LIMIT ? , ?"
+                ;
 
         public static final String DELETE_ALL_NOTIFICATIONS_OF_USER = "DELETE FROM AM_NOTIFICATION_END_USERS " +
                 "WHERE DESTINATION_USER = ? AND ORGANIZATION = ? AND PORTAL_TO_DISPLAY = ?";
@@ -3247,6 +3251,8 @@ public class SQLConstants {
 
         public static final String GET_API_UUID_USING_NAME_CONTEXT_VERSION = "SELECT API_UUID FROM AM_API WHERE "
                 + "API_NAME = ? AND CONTEXT = ? AND API_VERSION = ? AND ORGANIZATION = ?";
+        public static final String GET_NOTIFICATIONS_COUNT = "SELECT COUNT(*) AS NOTIFICATION_COUNT FROM " +
+                "AM_NOTIFICATION_END_USERS WHERE DESTINATION_USER = ? AND ORGANIZATION = ? AND PORTAL_TO_DISPLAY = ?";
     }
 
 
